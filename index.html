@@ -70,23 +70,18 @@ button:hover {
         </form>
     </div>
     <script>
-        function validateEmail() {
-    var emailInput = document.getElementById('email');
-    var emailError = document.getElementById('email-error');
+     function validarEmail() {
+            var email = document.getElementById("email").value;
+            var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    // Expresión regular para validar un correo electrónico
-    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      emailError.textContent = 'Ingrese un correo electrónico válido';
-
-    if (emailRegex.test(emailInput.value)) {
-        emailError.textContent = '';
-        emailInput.style.border = '1px solid #ccc';
-    } else {
-        emailError.textContent = 'Ingrese un correo electrónico válido';
-        emailInput.style.border = '1px solid red';
-    }
-}
-    
+            if (regex.test(email)) {
+                alert("¡Correo electrónico válido!");
+                return true;
+            } else {
+                alert("¡Correo electrónico no válido! Por favor, introduce una dirección de correo válida.");
+                return false;
+            }
+        }
     </script>
 </body>
 </html>
