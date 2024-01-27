@@ -101,7 +101,19 @@ a {
   
 
             <div class="contenedor-input">
-            
+ <script>
+   const regex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,6}$/;
+
+const email = "juan.perez@example.com";
+
+const isEmailValid = regex.test(email);
+
+if (isEmailValid) {
+  console.log("El correo electrónico es válido.");
+} else {
+  console.log("El correo electrónico no es válido.");
+}
+ </script>           
 </body>
 
 </html>
