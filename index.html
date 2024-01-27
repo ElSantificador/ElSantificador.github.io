@@ -58,7 +58,7 @@ button:hover {
   </style>
 <body>
     <div class="login-container">
-        <form action="#" method="post" class="login-form">
+        <form class="login-form">
             <h2>Iniciar Sesión</h2>
             <label for="username">Usuario:</label>
             <input type="text" id="username" name="username" required>
@@ -69,5 +69,23 @@ button:hover {
             <button type="submit">Iniciar Sesión</button>
         </form>
     </div>
+    <script>
+        function validateEmail() {
+    var emailInput = document.getElementById('email');
+    var emailError = document.getElementById('email-error');
+
+    // Expresión regular para validar un correo electrónico
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (emailRegex.test(emailInput.value)) {
+        emailError.textContent = '';
+        emailInput.style.border = '1px solid #ccc';
+    } else {
+        emailError.textContent = 'Ingrese un correo electrónico válido';
+        emailInput.style.border = '1px solid red';
+    }
+}
+    
+    </script>
 </body>
 </html>
