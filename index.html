@@ -76,6 +76,7 @@ button:hover {
 
     // Expresión regular para validar un correo electrónico
     var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      emailError.textContent = 'Ingrese un correo electrónico válido';
 
     if (emailRegex.test(emailInput.value)) {
         emailError.textContent = '';
