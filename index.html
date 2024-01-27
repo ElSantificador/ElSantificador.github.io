@@ -5,10 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Raleway|Ubuntu" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.15/dist/sweetalert2.min.css">
 
-  <!-- Estilos -->
   <link rel="stylesheet" href="css/estilos.css">
 
   <title>Formulario Login y Registro de Usuarios</title>
@@ -100,38 +99,48 @@ a {
     </div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.15/dist/sweetalert2.all.min.js"></script>
   <script>
-    const form = document.getElementById("login-form");
-    const usernameInput = document.getElementById("username");
-    const passwordInput = document.getElementById("password");
+    // ... your existing JavaScript code ...
 
     form.addEventListener("submit", (event) => {
-      event.preventDefault(); // Prevent page reload
+      event.preventDefault();
 
-      // Validate username (replace with your actual validation logic)
-      const usernameErrorMessage = usernameInput.nextElementSibling;
-      if (usernameInput.value.trim() === "") {
-        usernameErrorMessage.textContent = "Por favor, introduce un nombre de usuario.";
-        usernameErrorMessage.style.display = "block";
-      } else {
-        usernameErrorMessage.style.display = "none";
+      // Validate username
+      const username = usernameInput.value.trim();
+      if (!username) {
+        Swal.fire("Error", "Por favor, introduce un nombre de usuario.", "error");
+        return;
       }
 
-      // Validate password (replace with your actual validation logic)
-      const passwordErrorMessage = passwordInput.nextElementSibling;
-      if (passwordInput.value.trim() === "") {
-        passwordErrorMessage.textContent = "Por favor, introduce una contraseña.";
-        passwordErrorMessage.style.display = "block";
-      } else {
-        passwordErrorMessage.style.display = "none";
+      // Validate password
+      const password = passwordInput.value.trim();
+      if (!password) {
+        Swal.fire("Error", "Por favor, introduce una contraseña.", "error");
+        return;
       }
 
-      // If all validations pass, you can proceed with login logic here
-      if (usernameErrorMessage.style.display === "none" && passwordErrorMessage.style.display === "none") {
-        // Perform login actions (e.g., send data to server)
+      // Validate email format
+      if (!isValidEmail(username)) {
+        Swal.fire("Error", "El correo electrónico no tiene un formato válido.", "error");
+        return;
       }
+
+      // Validate password length
+      if (password.length < 8) {
+        Swal.fire("Error", "La contraseña debe tener al menos 8 caracteres.", "error");
+        return;
+      }
+
+      // If all validations pass, proceed with login logic
+      // ...
     });
-  </script>         
+
+    function isValidEmail(email) {
+      const regex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,6}$/;
+      return regex.test(email);
+    }
+  </script>        
 </body>
 
 </html>
