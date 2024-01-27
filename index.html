@@ -76,44 +76,62 @@ a {
  
     <!-- Contenido de los Formularios -->
     <div class="contenido-tab">
-      <!-- Iniciar Sesion -->
-      <div id="iniciar-sesion">
-        <h1>Iniciar Sesión</h1>
-        <form action="#" method="post">
-          <div class="contenedor-input">
-            <label>
-              Usuario <span class="req">*</span>
-            </label>
-            <input type="text" required>
-          </div>
+    <div id="iniciar-sesion">
+      <h1>Iniciar Sesión</h1>
+      <form id="login-form">
+        <div class="contenedor-input">
+          <label>
+            Usuario <span class="req">*</span>
+          </label>
+          <input type="text" required id="username">
+          <span class="error-message"></span>
+        </div>
 
-          <div class="contenedor-input">
-            <label>
-              Contraseña <span class="req">*</span>
-            </label>
-            <input type="password" required>
-          </div>
-          <p class="forgot"><a href="#">Se te olvidó la contraseña?</a></p>
-          <input type="submit" class="button button-block" value="Iniciar Sesión">
-        </form>
-      </div>
+        <div class="contenedor-input">
+          <label>
+            Contraseña <span class="req">*</span>
+          </label>
+          <input type="password" required id="password">
+          <span class="error-message"></span>
+        </div>
+        <p class="forgot"><a href="#">Se te olvidó la contraseña?</a></p>
+        <input type="submit" class="button button-block" value="Iniciar Sesión">
+      </form>
+    </div>
+  </div>
 
-  
+  <script>
+    const form = document.getElementById("login-form");
+    const usernameInput = document.getElementById("username");
+    const passwordInput = document.getElementById("password");
 
-            <div class="contenedor-input">
- <script>
-   const regex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,6}$/;
+    form.addEventListener("submit", (event) => {
+      event.preventDefault(); // Prevent page reload
 
-const email = "juan.perez@example.com";
+      // Validate username (replace with your actual validation logic)
+      const usernameErrorMessage = usernameInput.nextElementSibling;
+      if (usernameInput.value.trim() === "") {
+        usernameErrorMessage.textContent = "Por favor, introduce un nombre de usuario.";
+        usernameErrorMessage.style.display = "block";
+      } else {
+        usernameErrorMessage.style.display = "none";
+      }
 
-const isEmailValid = regex.test(email);
+      // Validate password (replace with your actual validation logic)
+      const passwordErrorMessage = passwordInput.nextElementSibling;
+      if (passwordInput.value.trim() === "") {
+        passwordErrorMessage.textContent = "Por favor, introduce una contraseña.";
+        passwordErrorMessage.style.display = "block";
+      } else {
+        passwordErrorMessage.style.display = "none";
+      }
 
-if (isEmailValid) {
-  console.log("El correo electrónico es válido.");
-} else {
-  console.log("El correo electrónico no es válido.");
-}
- </script>           
+      // If all validations pass, you can proceed with login logic here
+      if (usernameErrorMessage.style.display === "none" && passwordErrorMessage.style.display === "none") {
+        // Perform login actions (e.g., send data to server)
+      }
+    });
+  </script>         
 </body>
 
 </html>
